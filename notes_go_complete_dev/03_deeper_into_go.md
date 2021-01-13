@@ -93,3 +93,16 @@ func newCard() string {
 }
 
 ```
+
+### Arrays in Go
+
+Array = Fixed length list of things
+  - primitive data structure for holding list of records
+  - fixed length
+  - must be defined with data type, all identical types
+Slice = An array that can shrink or grow
+  - more "array" like features
+  - no fixed length
+  - must be of same type
+  
+
