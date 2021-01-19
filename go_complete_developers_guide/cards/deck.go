@@ -1,6 +1,7 @@
 package main
 
 import "fmt"
+import "io/ioutil"
 
 // Create a new type 'deck'
 // which is a slice of strings
@@ -38,4 +39,9 @@ func (d deck) print() {
 	for i, card := range d { // for index value, card in range cards
 		fmt.Println(i, card)	// print index number and card
 	}
+}
+
+//declare function deal, d is of type deck, handSize of type int, returns two values, both of type deck
+func deal(d deck, handSize int) (deck, deck) {
+	return d[:handSize], d[handSize:]
 }
