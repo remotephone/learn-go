@@ -78,3 +78,4 @@ import "fmt"        //import others we need
 func main() {       // declare functions, do stuff     
     fmt.Println("hi there") 
 }
+~~~

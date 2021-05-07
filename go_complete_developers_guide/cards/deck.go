@@ -1,7 +1,10 @@
 package main
 
-import "fmt"
-import "io/ioutil"
+import (
+	"fmt"
+    "io/ioutil"
+    "strings"
+)
 
 // Create a new type 'deck'
 // which is a slice of strings
@@ -44,4 +47,14 @@ func (d deck) print() {
 //declare function deal, d is of type deck, handSize of type int, returns two values, both of type deck
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// define a function with a receiver of deck type to return type string
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+func (d deck) saveToFile(filename string) error {
+
+
 }
