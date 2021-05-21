@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
-import "io/ioutil"
+import (
+	"fmt"
+	"io/ioutil"
+	"math/rand"
+	"os"
+	"strings"
+	"time"
+)
 
 // Create a new type 'deck'
 // which is a slice of strings
@@ -44,4 +50,38 @@ func (d deck) print() {
 //declare function deal, d is of type deck, handSize of type int, returns two values, both of type deck
 func deal(d deck, handSize int) (deck, deck) {
 	return d[:handSize], d[handSize:]
+}
+
+// define a function with a receiver of deck type to return type string
+func (d deck) toString() string {
+	return strings.Join([]string(d), ",")
+}
+
+func (d deck) saveToFile(filename string) error {
+	return ioutil.WriteFile(filename, []byte(d.toString()), 0666)
+}
+
+func newDeckFromFile(filename string) deck {
+	// assign to bs and err the results of ioutil.ReadFile(filename_provided_as_argument)
+	bs, err := ioutil.ReadFile(filename)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		os.Exit(1)
+	}
+	s := strings.Split(string(bs), ",")
+	return deck(s)
+}
+
+func (d deck) shuffle() {
+// 	rand.Seed(time.Now().UnixNano())
+// 	rand.Shuffle(len(d), func(i, j int) {d[i], d[j] = d[j], d[i]})
+// }
+
+	source := rand.NewSource(time.Now().UnixNano())
+	r := rand.New(source)
+
+	for i := range d{
+		newPosition := r.Intn(len(d) - 1)
+		d[i] , d[newPosition] = d[newPosition], d[i]
+	}
 }

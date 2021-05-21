@@ -15,3 +15,6 @@ fruits[0:2] = "Apple", "Pear"
 fruits[:2] = "Apple", "Pear"
 fruits[2:] = "Banana", "Peach"
 ```
+
+
+## Byte Slices
